@@ -5,12 +5,12 @@ app.use(express.json());
 const mongoose = require("mongoose");
 const Student = require("./models/studentModel")
 const Adress = require("./models/adressModel")
-
+require('dotenv').config({ path: "./.env"})
 
 
 mongoose
 	.connect(
-		"mongodb+srv://axel_mlz:pMAywTH8XDi7JUf@database-backend.4wob9.mongodb.net/populate?retryWrites=true&w=majority",
+		process.env.MONGO_URI,
 		{
 			useNewUrlParser: true,
 		}
@@ -47,6 +47,7 @@ app.get ("/student", debug, async (req,res)=> {
 	});
 	
 	// Create Adress then Student
+	
 app.post("/student", async (req, res) => {
 	let adressId ;
 	try{
